@@ -116,7 +116,7 @@ def speech_to_text_python():
 
                 print(
                     Fore.BLUE +
-                    "Bharat AI: " +
+                    "Bharath AI: " +
                     english_text
                 )
 
@@ -163,7 +163,7 @@ def main():
 
     print(
         Fore.CYAN +
-        "        BHARAT AI"
+        "        BHARATH AI"
     )
 
     print(

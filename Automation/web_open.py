@@ -2,7 +2,7 @@ import sys
 import os
 import webbrowser
 
-# Bharat AI main folder ko Python path mein add karo
+# Bharath AI main folder ko Python path mein add karo
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 

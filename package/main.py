@@ -61,7 +61,7 @@ def listen():
         start_button.click()
 
         print("================================")
-        print("       BHARAT AI")
+        print("       BHARATH AI")
         print("================================")
         print("Continuous listening started...")
         print("Speak normally.")
@@ -128,7 +128,7 @@ def listen():
 
     except KeyboardInterrupt:
 
-        print("\nBharat AI stopped.")
+        print("\nBharath AI stopped.")
 
     except Exception as error:
 

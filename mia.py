@@ -163,7 +163,7 @@ def openweb(command):
 
 def main():
     print("=" * 50)
-    print("        BHARAT AI - MIA")
+    print("        BHARATH AI - MIA")
     print("=" * 50)
     print("Voice assistant started.")
     print("Say 'exit' or 'quit' to stop.")
@@ -196,7 +196,7 @@ def main():
                 "goodbye"
             ]:
                 speak("Okay sir. Goodbye.")
-                print("Bharat AI stopped.")
+                print("Bharath AI stopped.")
                 break
 
             # ---------------------------------------------
@@ -251,11 +251,11 @@ def main():
             )
 
         except KeyboardInterrupt:
-            print("\nBharat AI stopped.")
+            print("\nBharath AI stopped.")
             break
 
         except Exception as error:
-            print("Bharat AI Error:", error)
+            print("Bharath AI Error:", error)
             speak("Sorry sir, something went wrong.")
 
 
