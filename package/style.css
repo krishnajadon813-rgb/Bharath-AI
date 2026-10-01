@@ -1,0 +1,931 @@
+/* =========================================
+   BHARAT AI — FUTURISTIC SCI-FI INTERFACE
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cyan: #00eaff;
+    --cyan-light: #8fffff;
+    --blue: #087cff;
+    --dark: #02060b;
+    --panel: rgba(4, 17, 28, 0.78);
+    --border: rgba(0, 234, 255, 0.28);
+    --text: #e9fcff;
+    --muted: #6f9aa8;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    overflow: hidden;
+
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(0, 145, 180, 0.16) 0%,
+            rgba(0, 70, 100, 0.08) 25%,
+            transparent 55%
+        ),
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(0, 234, 255, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(0, 100, 255, 0.08),
+            transparent 30%
+        ),
+        #02060b;
+}
+
+
+/* =========================================
+   BACKGROUND GRID
+   ========================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 234, 255, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 234, 255, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+    );
+
+    z-index: 0;
+}
+
+
+/* =========================================
+   SCAN LINE
+   ========================================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+    left: 0;
+    top: -10%;
+
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 234, 255, 0.5),
+        transparent
+    );
+
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.5);
+
+    pointer-events: none;
+
+    animation: screenScan 7s linear infinite;
+
+    z-index: 20;
+}
+
+@keyframes screenScan {
+    0% {
+        top: -10%;
+    }
+
+    100% {
+        top: 110%;
+    }
+}
+
+
+/* =========================================
+   MAIN DASHBOARD
+   ========================================= */
+
+.ai-container {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 28px 45px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   TOP HEADER
+   ========================================= */
+
+.header {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid rgba(0, 234, 255, 0.15);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 8px var(--cyan),
+        0 0 20px var(--cyan);
+
+    animation: logoPulse 1.5s infinite;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    color: var(--cyan);
+
+    text-shadow:
+        0 0 8px rgba(0, 234, 255, 0.8);
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+
+    color: var(--muted);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #00ffae;
+
+    box-shadow:
+        0 0 8px #00ffae,
+        0 0 16px rgba(0, 255, 174, 0.6);
+}
+
+@keyframes logoPulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+
+/* =========================================
+   SIDE HUD
+   ========================================= */
+
+.hud-left,
+.hud-right {
+    position: absolute;
+
+    top: 50%;
+
+    width: 150px;
+
+    transform: translateY(-50%);
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    line-height: 2;
+}
+
+.hud-left {
+    left: 35px;
+}
+
+.hud-right {
+    right: 35px;
+    text-align: right;
+}
+
+.hud-title {
+    color: var(--cyan);
+
+    font-size: 10px;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 8px rgba(0, 234, 255, 0.6);
+}
+
+.hud-line {
+    width: 100%;
+    height: 1px;
+
+    margin: 8px 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(0, 234, 255, 0.5),
+        transparent
+    );
+}
+
+.hud-right .hud-line {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 234, 255, 0.5)
+    );
+}
+
+
+/* =========================================
+   CENTER AI AREA
+   ========================================= */
+
+.ai-stage {
+    position: relative;
+
+    flex: 1;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================================
+   AI CORE
+   ========================================= */
+
+.ai-core {
+    position: relative;
+
+    width: 260px;
+    height: 260px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 234, 255, 0.35);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 234, 255, 0.16),
+            rgba(0, 80, 110, 0.08) 40%,
+            transparent 70%
+        );
+
+    box-shadow:
+        0 0 30px rgba(0, 234, 255, 0.15),
+        inset 0 0 40px rgba(0, 234, 255, 0.08);
+
+    animation: coreFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================================
+   OUTER RADAR RINGS
+   ========================================= */
+
+.ai-core::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -32px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 234, 255, 0.28);
+
+    box-shadow:
+        0 0 25px rgba(0, 234, 255, 0.08);
+
+    animation: radarRing 5s linear infinite;
+}
+
+.ai-core::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -65px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 234, 255, 0.12);
+
+    border-top-color: rgba(0, 234, 255, 0.8);
+
+    border-right-color: rgba(0, 234, 255, 0.4);
+
+    animation: radarRotate 4s linear infinite;
+}
+
+
+/* =========================================
+   INNER CORE
+   ========================================= */
+
+.core-inner {
+    position: relative;
+
+    width: 115px;
+    height: 115px;
+
+    border-radius: 50%;
+
+    border: 2px solid var(--cyan);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 234, 255, 0.35),
+            rgba(0, 80, 120, 0.2) 45%,
+            rgba(0, 0, 0, 0.5) 70%
+        );
+
+    box-shadow:
+        0 0 15px var(--cyan),
+        0 0 40px rgba(0, 234, 255, 0.5),
+        inset 0 0 25px rgba(0, 234, 255, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: innerPulse 2.5s ease-in-out infinite;
+}
+
+
+/* CORE CENTER */
+
+.core-inner::before {
+    content: "";
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 25px var(--cyan),
+        0 0 55px rgba(0, 234, 255, 0.8);
+
+    animation: centerPulse 1.4s infinite;
+}
+
+
+/* =========================================
+   RADAR SCANNING LINE
+   ========================================= */
+
+.radar-scan {
+    position: absolute;
+
+    inset: -15px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.radar-scan::before {
+    content: "";
+
+    position: absolute;
+
+    width: 50%;
+    height: 50%;
+
+    top: 0;
+    left: 50%;
+
+    transform-origin: 0% 100%;
+
+    background: linear-gradient(
+        90deg,
+        rgba(0, 234, 255, 0.35),
+        transparent
+    );
+
+    clip-path: polygon(
+        0 100%,
+        100% 0,
+        0 0
+    );
+
+    animation: radarSweep 3s linear infinite;
+}
+
+
+/* =========================================
+   HUD CORNER MARKS
+   ========================================= */
+
+.corner {
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    border-color: rgba(0, 234, 255, 0.8);
+
+    border-style: solid;
+}
+
+.corner.top-left {
+    top: -85px;
+    left: -85px;
+
+    border-width: 2px 0 0 2px;
+}
+
+.corner.top-right {
+    top: -85px;
+    right: -85px;
+
+    border-width: 2px 2px 0 0;
+}
+
+.corner.bottom-left {
+    bottom: -85px;
+    left: -85px;
+
+    border-width: 0 0 2px 2px;
+}
+
+.corner.bottom-right {
+    bottom: -85px;
+    right: -85px;
+
+    border-width: 0 2px 2px 0;
+}
+
+
+/* =========================================
+   PARTICLES
+   ========================================= */
+
+.particles {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.particles span {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 8px var(--cyan);
+
+    animation: particleFloat 4s infinite ease-in-out;
+}
+
+.particles span:nth-child(1) {
+    left: 20%;
+    top: 30%;
+}
+
+.particles span:nth-child(2) {
+    left: 30%;
+    top: 70%;
+
+    animation-delay: 1s;
+}
+
+.particles span:nth-child(3) {
+    left: 72%;
+    top: 25%;
+
+    animation-delay: 0.5s;
+}
+
+.particles span:nth-child(4) {
+    left: 82%;
+    top: 65%;
+
+    animation-delay: 1.5s;
+}
+
+.particles span:nth-child(5) {
+    left: 15%;
+    top: 55%;
+
+    animation-delay: 2s;
+}
+
+.particles span:nth-child(6) {
+    left: 88%;
+    top: 40%;
+
+    animation-delay: 0.8s;
+}
+
+@keyframes particleFloat {
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.25;
+    }
+
+    50% {
+        transform: translateY(-25px) scale(1.8);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   OUTPUT PANEL
+   ========================================= */
+
+.output-panel {
+    position: relative;
+
+    width: min(760px, 75%);
+
+    min-height: 100px;
+
+    padding: 18px 24px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: var(--panel);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 0 25px rgba(0, 234, 255, 0.06),
+        inset 0 0 25px rgba(0, 234, 255, 0.03);
+}
+
+.output-label {
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    color: var(--cyan);
+
+    margin-bottom: 8px;
+}
+
+#output {
+    width: 100%;
+
+    min-height: 45px;
+
+    color: #ffffff;
+
+    font-size: 17px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================================
+   LISTENING BUTTON
+   ========================================= */
+
+#startButton {
+    position: relative;
+
+    margin-bottom: 12px;
+
+    min-width: 190px;
+
+    padding: 13px 28px;
+
+    border: 1px solid var(--cyan);
+
+    border-radius: 5px;
+
+    background: rgba(0, 234, 255, 0.04);
+
+    color: var(--cyan);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    box-shadow:
+        0 0 12px rgba(0, 234, 255, 0.15);
+}
+
+#startButton::before {
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+    left: 15%;
+
+    width: 70%;
+    height: 1px;
+
+    background: var(--cyan);
+
+    box-shadow: 0 0 8px var(--cyan);
+}
+
+#startButton:hover {
+    background: rgba(0, 234, 255, 0.14);
+
+    box-shadow:
+        0 0 20px rgba(0, 234, 255, 0.35),
+        inset 0 0 15px rgba(0, 234, 255, 0.08);
+
+    transform: translateY(-2px);
+}
+
+#startButton:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   LISTENING STATE
+   ========================================= */
+
+.ai-core.listening {
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 0 35px rgba(0, 234, 255, 0.4),
+        0 0 90px rgba(0, 234, 255, 0.2),
+        inset 0 0 50px rgba(0, 234, 255, 0.2);
+
+    animation:
+        coreFloat 4s ease-in-out infinite,
+        listeningGlow 0.8s ease-in-out infinite alternate;
+}
+
+.ai-core.listening .core-inner {
+    animation:
+        innerPulse 1s infinite,
+        listeningCore 0.45s infinite alternate;
+}
+
+@keyframes listeningGlow {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes listeningCore {
+    from {
+        box-shadow:
+            0 0 15px var(--cyan),
+            0 0 35px rgba(0, 234, 255, 0.5);
+    }
+
+    to {
+        box-shadow:
+            0 0 30px var(--cyan),
+            0 0 80px rgba(0, 234, 255, 0.9);
+    }
+}
+
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes coreFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes innerPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+}
+
+@keyframes centerPulse {
+    0%,
+    100% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+@keyframes radarRing {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: scale(1.03);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 0.3;
+    }
+}
+
+@keyframes radarRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes radarSweep {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 900px) {
+    .hud-left,
+    .hud-right {
+        display: none;
+    }
+
+    .ai-container {
+        padding: 20px;
+    }
+
+    .output-panel {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .logo-text {
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+
+    .system-status {
+        font-size: 8px;
+    }
+
+    .ai-core {
+        width: 210px;
+        height: 210px;
+    }
+
+    .core-inner {
+        width: 95px;
+        height: 95px;
+    }
+
+    .ai-core::before {
+        inset: -25px;
+    }
+
+    .ai-core::after {
+        inset: -48px;
+    }
+
+    .output-panel {
+        width: 96%;
+    }
+
+    #output {
+        font-size: 15px;
+    }
+
+    #startButton {
+        min-width: 170px;
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,38 @@
+# Python virtual environment
+
+.venv/
+
+# Python cache
+
+**pycache**/
+*.py[cod]
+
+# Generated audio
+
+*.mp3
+*.wav
+
+# Environment / secret files
+
+.env
+.env.*
+*.key
+*.pem
+
+# IDE / editor files
+
+.vscode/
+
+# OS files
+
+Thumbs.db
+Desktop.ini
+
+# Build / package cache
+
+*.egg-info/
+build/
+dist/
+pip-wheel-metadata/
+.pytest_cache/
+.mypy_cache/
